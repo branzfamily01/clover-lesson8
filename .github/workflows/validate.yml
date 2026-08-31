@@ -1,0 +1,30 @@
+name: Validate Clover Lesson 8
+on:
+  push:
+  pull_request:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: JavaScript syntax
+        run: |
+          node --check lesson-data.js
+          node --check lesson-references.js
+          node --check lesson8-learning.js
+          node --check lesson8-enhance.js
+          node --check teacher-tools.js
+      - name: Source parity
+        run: python verify_clover8_source_parity.py
+      - name: Student export
+        run: python verify_student_export.py
+      - name: Hint / audio / Back Up safety
+        run: python verify_learning_safety.py
+      - name: Viewport / Back Up layout contract
+        run: python verify_layout_contract.py
