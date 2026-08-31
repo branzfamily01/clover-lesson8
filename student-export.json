@@ -1,0 +1,23 @@
+{
+  "schema": "clover-student-export@1",
+  "lessonId": "clover.lesson8",
+  "entry": "student-index.html",
+  "allowlist": [
+    "student-index.html",
+    "lesson8.css",
+    "lesson-data.js",
+    "lesson-references.js",
+    "lesson8-learning.js",
+    "lesson8-enhance.js"
+  ],
+  "forbidden": [
+    "teacher-tools.js",
+    "teacher-tools.css",
+    "source-lock.json",
+    "source-snapshot.json",
+    "Teacher Panel",
+    "Teacher Guide",
+    "teaching.v1",
+    "Bridge"
+  ]
+}
