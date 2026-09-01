@@ -8,7 +8,8 @@
     "lesson-data.js",
     "lesson-references.js",
     "lesson8-learning.js",
-    "lesson8-enhance.js"
+    "lesson8-enhance.js",
+    "lesson8-projection-fix.js"
   ],
   "forbidden": [
     "teacher-tools.js",
