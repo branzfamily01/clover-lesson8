@@ -16,6 +16,7 @@ jobs:
           node --check data.js
           node --check references.js
           node --check app.js
+          node --check layout-fix.js
           node --check validate.cjs
       - name: Clover lesson contract
         run: node validate.cjs
