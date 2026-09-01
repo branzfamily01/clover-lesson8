@@ -5,7 +5,10 @@ const stage = document.getElementById('stage');
 const lesson = window.CLOVER_LESSON8;
 if (!stage || !lesson) return;
 
-const answerStages = new Set(['check', 'why', 'wrong', 'meaning', 'grammar', 'output']);
+// Check〜文法整理までは「完成英文」を上部に残す。
+// Back Up / Say it では暗唱の邪魔になるため、完成英文は一切残さない。
+const completedSentenceStages = new Set(['check', 'why', 'wrong', 'meaning', 'grammar']);
+const patchStages = new Set([...completedSentenceStages, 'output']);
 const stageLabelMap = new Map([
   ['Check', 'check'],
   ['Why?', 'why'],
@@ -57,6 +60,14 @@ function ensureCompletedSentence(item) {
   return null;
 }
 
+function clearEnglishAnswerLeakageForBackUp() {
+  // Back Up では「見えている英文を読めば言える」状態を禁止する。
+  // 英文は Back Up の phrase-line だけに存在し、→ごとに1フレーズずつ隠れる。
+  stage.querySelectorAll(
+    '.question-card, .completed-projection-card, .completed, .big-answer, .choice-grid, .sub-question-list'
+  ).forEach(node => node.remove());
+}
+
 function reinforceBackUp(item) {
   if (!item.output || !Array.isArray(item.output.phrases) || !item.output.phrases.length) return;
 
@@ -68,8 +79,7 @@ function reinforceBackUp(item) {
   if (!panel) {
     panel = document.createElement('section');
     panel.className = 'panel backup-projection-panel';
-    const card = stage.querySelector('.completed-projection-card');
-    (card || stage.querySelector('.lesson-title'))?.insertAdjacentElement('afterend', panel);
+    stage.querySelector('.lesson-title')?.insertAdjacentElement('afterend', panel);
   }
   if (!panel) return;
 
@@ -82,12 +92,12 @@ function reinforceBackUp(item) {
 
   panel.innerHTML = `
     <div class="panel-label label-output backup-title">🎙 Back Up Technique｜1フレーズずつ</div>
-    <div class="backup-rule">→ を1回押すたびに、<strong>文末側から1フレーズだけ</strong>隠します。全文を一気には消しません。</div>
+    <div class="backup-rule">→ を1回押すたびに、<strong>文末側から1フレーズだけ</strong>隠します。隠れた部分は暗唱して英文を再生します。</div>
     <div class="backup-wrap ${japaneseOnly ? 'backup-only-jp' : ''}">
       <div class="backup-jp">${esc(item.output.jp || item.translation || '')}</div>
       <div class="phrase-line">${phraseHtml}</div>
       <div class="backup-status">
-        <span>${japaneseOnly ? '日本語だけから英文を再生' : `隠したフレーズ ${hiddenCount} / ${phrases.length}`}</span>
+        <span>${japaneseOnly ? '日本語だけから全文を再生' : `暗唱するフレーズ ${hiddenCount} / ${phrases.length}`}</span>
         <button class="mini-btn" type="button" data-backup-reset="1">最初に戻す</button>
       </div>
     </div>`;
@@ -95,13 +105,21 @@ function reinforceBackUp(item) {
 
 function patch(detail) {
   if (patching || !detail || !detail.frame || detail.frame.kind !== 'item' || !detail.item) return;
-  if (!answerStages.has(detail.frame.stage)) return;
+  if (!patchStages.has(detail.frame.stage)) return;
 
   patching = true;
   try {
+    if (detail.frame.stage === 'output') {
+      stage.classList.remove('answer-phase');
+      stage.classList.add('output-phase');
+      clearEnglishAnswerLeakageForBackUp();
+      reinforceBackUp(detail.item);
+      return;
+    }
+
+    stage.classList.remove('output-phase');
     stage.classList.add('answer-phase');
-    ensureCompletedSentence(detail.item);
-    if (detail.frame.stage === 'output') reinforceBackUp(detail.item);
+    if (completedSentenceStages.has(detail.frame.stage)) ensureCompletedSentence(detail.item);
   } finally {
     patching = false;
   }
@@ -112,7 +130,7 @@ function patchFromDom() {
   const key = stage.querySelector('.qno')?.textContent?.trim();
   const label = stage.querySelector('.stage-pill')?.textContent?.trim();
   const stageName = stageLabelMap.get(label);
-  if (!key || !stageName || !answerStages.has(stageName)) return;
+  if (!key || !stageName || !patchStages.has(stageName)) return;
   const currentItem = lesson.items.find(item => item.key === key);
   if (!currentItem) return;
   patch({frame: {kind: 'item', stage: stageName}, item: currentItem});
@@ -131,6 +149,7 @@ style.textContent = `
 .backup-rule{margin:0 0 12px;padding:10px 13px;border-radius:12px;background:#f1ebff;border:1px solid #d9cff1;color:#493d68;font-size:clamp(14px,1.35vw,19px);line-height:1.45;font-weight:850}
 .backup-projection-panel .phrase-line{margin-top:2px}
 .backup-projection-panel .phrase{flex:1 1 180px;min-width:min(220px,100%)}
+.output-phase .completed-projection-card,.output-phase .question-card,.output-phase .completed,.output-phase .big-answer{display:none!important}
 @media (max-height:700px){.completed-projection-text{font-size:clamp(18px,2vw,28px)!important}.backup-projection-panel .phrase{min-height:48px}}
 `;
 document.head.appendChild(style);
