@@ -1,10 +1,11 @@
 {
   "lessonId": "clover.lesson8",
-  "title": "CLOVER",
+  "title": "Clover Lesson 8",
   "lesson": "LESSON 8",
   "status": "review",
-  "version": "2026-09-01",
+  "version": "2026-09-02",
   "itemCount": 37,
+  "engine": "lesson10-style-local-v1",
   "authoritative": [
     "Clover本冊 L08_本文",
     "Clover公式解答 L08_解答"

@@ -1,1 +1,31 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Clover Lesson 8</title><link rel="stylesheet" href="lesson08.css"></head><body data-teacher="0"><div id="app"></div><script src="lesson-data.js"></script><script src="lesson8-output-defaults.js"></script><script src="lesson-data-adapter.js"></script><script src="lesson08-learning.js"></script><script src="lesson08-enhance.js"></script></body></html>
+<!doctype html>
+<html lang="ja" data-mode="student">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clover Lesson 8 Student</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="stage">
+  <section id="slide"></section>
+  <aside id="teacher" class="teacher"></aside>
+  <nav id="nav" class="nav">
+    <button id="prev">←</button>
+    <button id="mapBtn" class="hideable">🗺 地ߛ�</button>
+    <div class="hideable count" id="count">1 / 37</div>
+    <div class="hideable dots" id="dots"></div>
+    <label class="hideable small">Speed <input id="speed" type="range" min="0.7" max="1.4" step="0.1" value="1"></label>
+    <button id="resetBtn" class="hideable">↻</button>
+    <button id="next" class="next">→</button>
+    <button id="navMin">−</button>
+    <span class="hideable count" id="stageName">Problem</span>
+  </nav>
+  <div id="modalroot"></div>
+</main>
+<script src="lesson-data.js"></script>
+<script src="data.js"></script>
+<script src="references.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

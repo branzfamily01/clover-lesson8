@@ -4,18 +4,16 @@
   "include": [
     "lesson-meta.json",
     "lesson-data.js",
-    "lesson8-output-defaults.js",
-    "lesson-data-adapter.js",
-    "lesson08-learning.js",
-    "lesson08-enhance.js",
-    "lesson08.css",
+    "data.js",
+    "references.js",
+    "app.js",
+    "styles.css",
     "student-index.html"
   ],
   "exclude": [
-    "Teacher Dock",
-    "Teacher Log",
     "source-lock.json",
-    "lesson-references.js",
-    "teacher memo"
+    "Teacher Log",
+    "teacher memo",
+    "legacy teacher assets"
   ]
 }

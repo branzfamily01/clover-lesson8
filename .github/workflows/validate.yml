@@ -13,11 +13,9 @@ jobs:
       - name: JavaScript syntax
         run: |
           node --check lesson-data.js
-          node --check lesson8-output-defaults.js
-          node --check lesson-data-adapter.js
-          node --check lesson-references.js
-          node --check lesson08-learning.js
-          node --check lesson08-enhance.js
+          node --check data.js
+          node --check references.js
+          node --check app.js
           node --check validate.cjs
       - name: Clover lesson contract
         run: node validate.cjs
