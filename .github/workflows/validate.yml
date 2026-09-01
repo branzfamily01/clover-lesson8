@@ -19,6 +19,7 @@ jobs:
           node --check lesson-references.js
           node --check lesson8-learning.js
           node --check lesson8-enhance.js
+          node --check lesson8-projection-fix.js
           node --check teacher-tools.js
       - name: Source parity
         run: python verify_clover8_source_parity.py
