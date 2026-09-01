@@ -1,15 +1,22 @@
 {
-  "lessonId": "clover.lesson8",
-  "status": "review",
   "authoritative": [
-    {"name":"L08_本文 (1).docx","role":"Clover本冊","sha256":"a84cddfd068d8ffd5ce679fe63eebe9fa76215fdaa20c417a2b5a9117f672abb"},
-    {"name":"L08_解答 (1).docx","role":"Clover公式解答・解説","sha256":"340264c3ee46ca3cfb2abbc920ac317f39e2b91a248400e780d8f42049c69fb2"}
+    {
+      "name": "L08_本文",
+      "role": "問題文・選択肢・出題順序"
+    },
+    {
+      "name": "L08_解答",
+      "role": "正解・完成英文・公式訳・公式解説"
+    }
   ],
   "supplementary": [
-    {"name":"高校英文法_授業用ビジュアル文法.pdf","role":"文法MAP・図解・判断手順","sha256":"81597c85aa0c7f6c2e552033ec62b0ed0be537da24faa37207db25d3a92ba09c"},
-    {"name":"一億人の英文法 pp.1-300.pdf","role":"英語の構造・修飾・文法説明の補助","sha256":"b8dabb4faba6297c72e80393e2b8688fff4878bd3ccce977ba0ef51e9208fa37"},
-    {"name":"一億人の英文法 p.p.301-682.pdf","role":"比較・否定・助動詞等の補助","sha256":"910de5003b33b77421403b6b512c0aba3830fbbdc9e9aefe8991eb530378599a"},
-    {"name":"LESSON8_全問題_詳細解説_統合版.md","role":"詳細解説・誤答分析の補助"}
-  ],
-  "policy": "補助資料は正本の問題文・選択肢・正解・模範解答・日本語訳を上書きしない。"
+    {
+      "name": "高校英文法 Visual Grammar",
+      "role": "構造・判断フロー・図解の再構成"
+    },
+    {
+      "name": "一億人の英文法",
+      "role": "コアイメージ・語順・助動詞/否定/比較等の補助"
+    }
+  ]
 }

@@ -1,25 +1,21 @@
 {
-  "schema": "clover-student-export@1",
   "lessonId": "clover.lesson8",
-  "entry": "student-index.html",
-  "allowlist": [
-    "student-index.html",
-    "lesson8.css",
+  "status": "review",
+  "include": [
+    "lesson-meta.json",
     "lesson-data.js",
     "lesson8-output-defaults.js",
-    "lesson-references.js",
-    "lesson8-learning.js",
-    "lesson8-enhance.js",
-    "lesson8-projection-fix.js"
+    "lesson-data-adapter.js",
+    "lesson08-learning.js",
+    "lesson08-enhance.js",
+    "lesson08.css",
+    "student-index.html"
   ],
-  "forbidden": [
-    "teacher-tools.js",
-    "teacher-tools.css",
+  "exclude": [
+    "Teacher Dock",
+    "Teacher Log",
     "source-lock.json",
-    "source-snapshot.json",
-    "Teacher Panel",
-    "Teacher Guide",
-    "teaching.v1",
-    "Bridge"
+    "lesson-references.js",
+    "teacher memo"
   ]
 }

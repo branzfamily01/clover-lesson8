@@ -1,6 +1,16 @@
 {
-  "id": "clover.lesson8",
-  "title": "Clover Lesson 8",
+  "lessonId": "clover.lesson8",
+  "title": "CLOVER",
+  "lesson": "LESSON 8",
   "status": "review",
-  "itemCount": 37
+  "version": "2026-09-01",
+  "itemCount": 37,
+  "authoritative": [
+    "Clover本冊 L08_本文",
+    "Clover公式解答 L08_解答"
+  ],
+  "supplementary": [
+    "高校英文法 Visual Grammar",
+    "一億人の英文法"
+  ]
 }

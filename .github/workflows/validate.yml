@@ -10,37 +10,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
       - name: JavaScript syntax
         run: |
           node --check lesson-data.js
           node --check lesson8-output-defaults.js
+          node --check lesson-data-adapter.js
           node --check lesson-references.js
-          node --check lesson8-learning.js
-          node --check lesson8-enhance.js
-          node --check lesson8-projection-fix.js
-          node --check teacher-tools.js
-      - name: Output flow coverage
-        run: |
-          node - <<'NODE'
-          global.window = global;
-          require('./lesson-data.js');
-          require('./lesson8-output-defaults.js');
-          const items = window.CLOVER_LESSON8.items;
-          const bad = items.filter(i => !i.output || !Array.isArray(i.output.phrases) || i.output.phrases.length < 2);
-          if (bad.length) {
-            console.error('Output missing or not phrase-split:', bad.map(i => i.key));
-            process.exit(1);
-          }
-          console.log(`OK: ${items.length} / ${items.length} items have Say it / Output with 2+ phrases`);
-          NODE
-      - name: Source parity
-        run: python verify_clover8_source_parity.py
-      - name: Student export
-        run: python verify_student_export.py
-      - name: Hint / audio / Back Up safety
-        run: python verify_learning_safety.py
-      - name: Viewport / Back Up layout contract
-        run: python verify_layout_contract.py
+          node --check lesson08-learning.js
+          node --check lesson08-enhance.js
+          node --check validate.cjs
+      - name: Clover lesson contract
+        run: node validate.cjs

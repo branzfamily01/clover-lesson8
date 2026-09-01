@@ -1,3 +1,0 @@
-.teacher-fab{position:absolute;right:14px;top:14px;z-index:5;border:1px solid rgba(22,41,67,.18);background:#fff8e7;color:#7d590e;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900;cursor:pointer}
-.teacher-form{display:grid;gap:10px}.teacher-field label{display:block;font-size:13px;font-weight:900;color:#40516a;margin-bottom:4px}.teacher-field textarea{width:100%;min-height:78px;resize:vertical;border:1px solid #cfd4da;border-radius:10px;padding:9px;background:#fff}.save-row{display:flex;justify-content:flex-end;gap:8px}.save-btn{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:9px 14px;font-weight:900;cursor:pointer}
-@media(max-width:650px){.teacher-fab{top:8px;right:8px}}
