@@ -7,18 +7,18 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<main class="stage">
+<main class="stage" data-fit="normal" data-phase="problem">
   <section id="slide"></section>
   <aside id="teacher" class="teacher"></aside>
   <nav id="nav" class="nav">
-    <button id="prev">←</button>
-    <button id="mapBtn" class="hideable">🗺 地ߛ�</button>
+    <button id="prev" aria-label="前へ">←</button>
+    <button id="mapBtn" class="hideable">🗺 地図</button>
     <div class="hideable count" id="count">1 / 37</div>
     <div class="hideable dots" id="dots"></div>
     <label class="hideable small">Speed <input id="speed" type="range" min="0.7" max="1.4" step="0.1" value="1"></label>
-    <button id="resetBtn" class="hideable">↻</button>
-    <button id="next" class="next">→</button>
-    <button id="navMin">−</button>
+    <button id="resetBtn" class="hideable" aria-label="最初から">↻</button>
+    <button id="next" class="next" aria-label="次へ">→</button>
+    <button id="navMin" aria-label="操作バーを縮小">−</button>
     <span class="hideable count" id="stageName">Problem</span>
   </nav>
   <div id="modalroot"></div>
@@ -27,5 +27,6 @@
 <script src="data.js"></script>
 <script src="references.js"></script>
 <script src="app.js"></script>
+<script src="layout-fix.js"></script>
 </body>
 </html>
