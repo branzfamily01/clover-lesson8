@@ -45,7 +45,6 @@ function ensureCompletedSentence(item) {
       question.textContent = item.completed || item.answer || item.question;
       question.classList.add('completed-projection-text');
     }
-    // 複数空所問題では、空所付きの小問を残さない。
     card.querySelectorAll('.sub-question-list').forEach(node => node.remove());
     return card;
   }
@@ -62,7 +61,6 @@ function reinforceBackUp(item) {
   if (!item.output || !Array.isArray(item.output.phrases) || !item.output.phrases.length) return;
 
   const phrases = item.output.phrases;
-  // 元Engineが持っている現在の隠し数をDOMから引き継ぐ。
   const hiddenCount = stage.querySelectorAll('.phrase.hidden-phrase').length;
   const japaneseOnly = !!stage.querySelector('.backup-wrap.backup-only-jp');
 
@@ -121,14 +119,7 @@ function patchFromDom() {
 }
 
 document.addEventListener('clover:framechange', event => patch(event.detail));
-
-// resume=1 で解答フェイズから復帰した場合も、初回描画を補正する。
 setTimeout(patchFromDom, 0);
-
-const observer = new MutationObserver(() => {
-  if (!patching) queueMicrotask(patchFromDom);
-});
-observer.observe(stage, {childList: true, subtree: true});
 
 const style = document.createElement('style');
 style.textContent = `
