@@ -118,7 +118,7 @@ function patchFromDom() {
   patch({frame: {kind: 'item', stage: stageName}, item: currentItem});
 }
 
-document.addEventListener('clover:framechange', event => patch(event.detail));
+window.addEventListener('clover:framechange', event => patch(event.detail));
 setTimeout(patchFromDom, 0);
 
 const style = document.createElement('style');
