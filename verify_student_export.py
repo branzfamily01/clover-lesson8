@@ -14,7 +14,7 @@ def main():
             assert bad not in text, f'forbidden student content {bad!r} in {name}'
     html=(ROOT/'student-index.html').read_text(encoding='utf-8')
     refs=re.findall(r'(?:src|href)="([^"]+)"',html)
-    local=[x for x in refs if not re.match(r'^[a-z]+:',x) and not x.startswith('#')]
+    local=[x.split('?',1)[0].split('#',1)[0] for x in refs if not re.match(r'^[a-z]+:',x) and not x.startswith('#')]
     assert set(local).issubset(set(allow)), f'student HTML references non-allowlisted files: {set(local)-set(allow)}'
     assert 'teacherOverlay' not in html and 'teacher-tools.js' not in html
     print('OK: Student Export positive allowlist / teacher data excluded')
