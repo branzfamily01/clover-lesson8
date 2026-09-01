@@ -16,11 +16,26 @@ jobs:
       - name: JavaScript syntax
         run: |
           node --check lesson-data.js
+          node --check lesson8-output-defaults.js
           node --check lesson-references.js
           node --check lesson8-learning.js
           node --check lesson8-enhance.js
           node --check lesson8-projection-fix.js
           node --check teacher-tools.js
+      - name: Output flow coverage
+        run: |
+          node - <<'NODE'
+          global.window = global;
+          require('./lesson-data.js');
+          require('./lesson8-output-defaults.js');
+          const items = window.CLOVER_LESSON8.items;
+          const bad = items.filter(i => !i.output || !Array.isArray(i.output.phrases) || i.output.phrases.length < 2);
+          if (bad.length) {
+            console.error('Output missing or not phrase-split:', bad.map(i => i.key));
+            process.exit(1);
+          }
+          console.log(`OK: ${items.length} / ${items.length} items have Say it / Output with 2+ phrases`);
+          NODE
       - name: Source parity
         run: python verify_clover8_source_parity.py
       - name: Student export
