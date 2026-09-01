@@ -19,7 +19,8 @@
 
   lesson.items = lesson.items.map((item) => {
     const why = Array.isArray(item.why) ? item.why.join(' / ') : (item.why || item.decision || item.focus || '');
-    const wrong = Array.isArray(item.wrong) ? item.wrong.join(' / ') : (item.wrong || '形・意味・語法のどこが合わないかを確認しよう。');
+    const wrongRaw = Array.isArray(item.wrong) ? item.wrong.join(' / ') : (item.wrong || '');
+    const wrong = wrongRaw || item.decision || `${item.focus || item.sectionName || 'この表現'}：形・意味・語法を文全体で確認しよう。`;
     const jpHints = Array.isArray(item.hints) ? item.hints : [];
     const hints = jpHints.map((h, n) => `${hintLead[Math.min(n, hintLead.length - 1)]}\n${h}`);
     const phrases = item.output && Array.isArray(item.output.phrases) ? item.output.phrases.slice() : [];
