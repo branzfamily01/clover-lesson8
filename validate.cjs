@@ -1,29 +1,34 @@
 const fs=require('fs'),vm=require('vm');
 global.window=global;
-for(const f of ['lesson-data.js','data.js']) vm.runInThisContext(fs.readFileSync(f,'utf8'),{filename:f});
-const D=window.LESSON_DATA; const err=[];
+for(const f of ['lesson-data.js','lesson-data-v1.js','lesson08-learning-v1.js']) vm.runInThisContext(fs.readFileSync(f,'utf8'),{filename:f});
+const D=window.LESSON_DATA; const err=[]; const allowed=new Set(['blank','choice','order','translate','write']);
 if(!Array.isArray(D)||D.length!==37) err.push(`item count: ${D&&D.length}`);
 (D||[]).forEach((x,n)=>{
   for(const k of ['id','key','question','answer','completed']) if(!String(x[k]||'').trim()) err.push(`${n+1} missing ${k}`);
+  if(!allowed.has(x.format)) err.push(`${x.id} bad format ${x.format}`);
   if(!Array.isArray(x.hints)||x.hints.length<2) err.push(`${x.id} hints`);
-  if((x.hints||[]).some(h=>!Array.isArray(h)||h.length<2||!String(h[0]).trim()||!String(h[1]).trim())) err.push(`${x.id} bilingual hint`);
-  if(!Array.isArray(x.chunks)||x.chunks.length<1) err.push(`${x.id} output chunks`);
+  if((x.hints||[]).some(h=>!h||!String(h.en||'').trim()||!String(h.jp||'').trim())) err.push(`${x.id} bilingual hints`);
+  if(!Array.isArray(x.correct)||!x.correct.length) err.push(`${x.id} why/correct`);
+  if(!Array.isArray(x.wrong)||!x.wrong.length) err.push(`${x.id} wrong analysis`);
+  if(!Array.isArray(x.outputChunks)||!x.outputChunks.length) err.push(`${x.id} output chunks`);
+  if(String(x.completed||'').split(/\s+/).length>=6 && x.outputChunks.length<2) err.push(`${x.id} Back Up must use phrase chunks`);
+  if(!Array.isArray(x.mapPath)||x.mapPath.length<2) err.push(`${x.id} mapPath`);
+  if((x.format==='order'||x.format==='write') && String(x.audioQ||'').trim()) err.push(`${x.id} stage0 answer leakage risk`);
 });
-for(const f of ['index.html','student-index.html']){
-  const s=fs.readFileSync(f,'utf8');
-  for(const req of ['lesson-data.js','data.js','references.js','app.js','layout-fix.js','styles.css']) if(!s.includes(req)) err.push(`${f} missing ${req}`);
+if(!window.LESSON_FINAL_CHECK||!Array.isArray(window.LESSON_FINAL_CHECK.sections)||window.LESSON_FINAL_CHECK.sections.length<5) err.push('Final Check sections');
+const teacher=fs.readFileSync('index.html','utf8'),student=fs.readFileSync('student-index.html','utf8');
+for(const html of [['index.html',teacher],['student-index.html',student]]){
+  for(const req of ['lesson-data.js','lesson-data-v1.js','lesson-references-v1.js','lesson08-learning-v1.js','lesson08-v1.css','_engine/v1/engine.js','_engine/v1/audio.js']) if(!html[1].includes(req)) err.push(`${html[0]} missing ${req}`);
+  for(const legacy of ['app.js','layout-fix.js','styles.css']) if(html[1].includes(`src="${legacy}"`)||html[1].includes(`href="${legacy}"`)) err.push(`${html[0]} still loads legacy ${legacy}`);
 }
-const student=fs.readFileSync('student-index.html','utf8');
-for(const bad of ['data-mode="teacher"','source-lock.json','Teacher Log','â†','ðŸ','åœ°','âˆ']) if(student.includes(bad)) err.push(`student leak/mojibake: ${bad}`);
-const app=fs.readFileSync('app.js','utf8');
-if(!/hideMore\(\).*stage=Math\.min\(stage\+1/.test(app.replace(/\s+/g,''))) err.push('Back Up must hide one chunk at a time');
-const css=fs.readFileSync('styles.css','utf8');
-if(/\.stage\{[^}]*min-height\s*:\s*720px/s.test(css)) err.push('fixed 720px stage height reintroduced');
-if(/\.panel\{[^}]*overflow\s*:\s*hidden/s.test(css)) err.push('panel content clipping reintroduced');
-for(const req of ['data-phase="say-it"','data-fit="compact"','data-fit="tight"','data-fit="emergency"']) if(!css.includes(req)) err.push(`styles missing ${req}`);
-const fit=fs.readFileSync('layout-fix.js','utf8');
-for(const req of ['scrollHeight','clientHeight','FIT_LEVELS','MutationObserver','resize']) if(!fit.includes(req)) err.push(`layout guard missing ${req}`);
-const exportCfg=JSON.parse(fs.readFileSync('student-export.json','utf8'));
-if(!exportCfg.include.includes('layout-fix.js')) err.push('student export missing layout-fix.js');
+if(!teacher.includes('_teacher/v1/teacher.js')) err.push('teacher entry missing shared teacher layer');
+if(student.includes('_teacher/v1/teacher.js')||student.includes('teacherMode":true')||student.includes('teaching.v1')) err.push('student teacher leak');
+const css=fs.readFileSync('lesson08-v1.css','utf8');
+for(const req of ['data-lesson-stage="output"','question-card{display:none','final-stage','concept-map-drawer','data-long="1"']) if(!css.includes(req)) err.push(`lesson css missing ${req}`);
+const enhance=fs.readFileSync('lesson08-enhance-v1.js','utf8');
+for(const req of ['lesson:render','where-am-i','question-viz','buildMap','clueTerms']) if(!enhance.includes(req)) err.push(`enhance missing ${req}`);
+const exp=JSON.parse(fs.readFileSync('student-export.json','utf8'));
+if(exp.policy!=='allowlist') err.push('student export must be allowlist');
+for(const req of ['lesson-data.js','lesson-data-v1.js','lesson-references-v1.js','lesson08-learning-v1.js','lesson08-enhance-v1.js','lesson08-v1.css','student-index.html']) if(!exp.files.includes(req)) err.push(`student export missing ${req}`);
 if(err.length){console.error(err.join('\n'));process.exit(1)}
-console.log(`OK: ${D.length} items / active layout guard / 16:9 fit rules / clean student view / Back Up one chunk`);
+console.log(`OK: ${D.length} items / Engine v1 / Small Step Hints / MAP / Back Up / Final Check / student-safe`);
