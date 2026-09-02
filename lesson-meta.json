@@ -12,16 +12,6 @@
   "formats": ["blank", "choice", "order", "translate", "write"],
   "teacherMode": true,
   "studentExport": true,
-  "features": [
-    "concept-map",
-    "question-diagrams",
-    "small-step-hints",
-    "backup-technique",
-    "final-check",
-    "shared-engine-v1"
-  ],
-  "release": {
-    "studentProduction": false,
-    "requiresTeacherApproval": true
-  }
+  "features": ["concept-map","question-diagrams","small-step-hints","backup-technique","final-check","shared-engine-v1"],
+  "release": {"studentProduction": false,"requiresTeacherApproval": true}
 }
