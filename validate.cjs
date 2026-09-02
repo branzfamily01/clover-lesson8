@@ -29,7 +29,8 @@ const enhance=fs.readFileSync('lesson08-enhance-v1.js','utf8');
 for(const req of ['lesson:render','where-am-i','question-viz','buildMap','clueTerms']) if(!enhance.includes(req)) err.push(`enhance missing ${req}`);
 const exp=JSON.parse(fs.readFileSync('student-export.json','utf8'));
 if(exp.policy!=='allowlist') err.push('student export must be allowlist');
-if(exp.status!=='review'||exp.releaseGate!=='teacher-approval-required') err.push('review release gate missing');
+if(exp.status!=='ready'||exp.releaseGate!=='student-production-explicit-approval-required') err.push('ready release gate missing');
 for(const req of ['lesson-data.js','lesson08-output-v1.js','lesson-data-v1.js','lesson-references-v1.js','lesson08-learning-v1.js','lesson08-enhance-v1.js','lesson08-v1.css','student-index.html']) if(!exp.files.includes(req)) err.push(`student export missing ${req}`);
+const meta=JSON.parse(fs.readFileSync('lesson-meta.json','utf8')); if(meta.status!=='ready'||meta.id!=='clover.lesson8'||meta.questionCount!==37) err.push('lesson meta ready/id/count');
 if(err.length){console.error(err.join('\n'));process.exit(1)}
-console.log(`OK: ${D.length} items / Engine v1 / Small Step Hints / MAP / phrase Back Up / Final Check / student-safe / review-gated`);
+console.log(`OK: ${D.length} items / Engine v1 / Small Step Hints / MAP / phrase Back Up / Final Check / student-safe / ready / production-gated`);
