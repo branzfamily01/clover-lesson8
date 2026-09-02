@@ -1,8 +1,8 @@
 {
   "policy":"allowlist",
   "lessonId":"clover.lesson8",
-  "status":"review",
-  "releaseGate":"teacher-approval-required",
+  "status":"ready",
+  "releaseGate":"student-production-explicit-approval-required",
   "files":["lesson-data.js","lesson08-output-v1.js","lesson-data-v1.js","lesson-references-v1.js","lesson08-learning-v1.js","lesson08-enhance-v1.js","lesson08-v1.css","student-index.html"],
   "exclude":["source-lock.json","teacher.js","Teacher Log","teaching.v1","backup data","legacy app.js","legacy layout-fix.js","legacy styles.css"]
 }
