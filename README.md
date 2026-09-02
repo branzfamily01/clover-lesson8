@@ -31,6 +31,10 @@ Shared runtime is loaded from `branzfamily01/english-classroom`:
 
 Back Up Technique hides **one phrase at a time from the end**. Student entry does not load the Teacher layer.
 
+## Gold Standard parity target
+
+The UX target is the current Evergreen Lesson8 / Lesson9 / Lesson10 implementation: same screen flow, same shared runtime, same teacher/student separation, same MAP access pattern, same one-phrase-at-a-time Back Up behavior, and the same retrieval-style Final Check. Clover keeps its own content and grammar map.
+
 ## Source policy
 
 Clover `L08_本文` / `L08_解答` remain authoritative for questions, choices, answers, completed sentences, and official translations. Evergreen Lesson8/9/10 are reference implementations for the classroom UX only.
