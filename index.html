@@ -1,32 +1,40 @@
 <!doctype html>
-<html lang="ja" data-mode="teacher">
+<html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#172033">
 <title>Clover Lesson 8</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://branzfamily01.github.io/english-classroom/_engine/v1/engine.css">
+<link rel="stylesheet" href="lesson08-v1.css">
+<script>
+window.LESSON_META={"schemaVersion":1,"id":"clover.lesson8","title":"Clover Lesson 8","series":"Clover","lesson":"8","grade":3,"subject":"English","engine":"v1","status":"review","questionCount":37,"formats":["blank","choice","order","translate","write"],"teacherMode":true,"studentExport":true,"features":["concept-map","question-diagrams","small-step-hints","backup-technique","final-check"]};
+</script>
 </head>
 <body>
-<main class="stage" data-fit="normal" data-phase="problem">
-  <section id="slide"></section>
-  <aside id="teacher" class="teacher"></aside>
-  <nav id="nav" class="nav">
-    <button id="prev" aria-label="前へ">←</button>
-    <button id="mapBtn" class="hideable">🗺 地図</button>
-    <div class="hideable count" id="count">1 / 37</div>
-    <div class="hideable dots" id="dots"></div>
-    <label class="hideable small">Speed <input id="speed" type="range" min="0.7" max="1.4" step="0.1" value="1"></label>
-    <button id="resetBtn" class="hideable" aria-label="最初から">↻</button>
-    <button id="next" class="next" aria-label="次へ">→</button>
-    <button id="navMin" aria-label="操作バーを縮小">−</button>
-    <span class="hideable count" id="stageName">Problem</span>
-  </nav>
-  <div id="modalroot"></div>
-</main>
+<div id="app" class="app" tabindex="0">
+  <main class="stage" id="stage" aria-live="polite"></main>
+  <div class="toolbar" aria-label="スライド操作">
+    <button class="icon-btn" id="prevBtn" type="button" aria-label="前の画面">←</button>
+    <button class="icon-btn" id="menuBtn" type="button" aria-label="問題一覧">☰</button>
+    <div class="progress-wrap" aria-label="進行状況"><span id="slideCounter" class="counter"></span><div id="stepDots" class="step-dots"></div></div>
+    <div class="voice-controls">
+      <label>Voice <select id="voiceMode" aria-label="英語音声"><option value="auto">Auto</option><option value="en-US">US</option><option value="en-GB">UK</option></select></label>
+      <label>Speed <span id="rateValue">1.0</span><input id="rate" type="range" min="0.7" max="3" step="0.1" value="1.0" aria-label="読み上げ速度"></label>
+    </div>
+    <button class="icon-btn" id="resetBtn" type="button" aria-label="この問題を最初に戻す">↺</button>
+    <button class="icon-btn primary" id="nextBtn" type="button" aria-label="次の画面">→</button>
+  </div>
+  <div id="drawer" class="drawer" hidden><div class="drawer-card" role="dialog" aria-modal="true" aria-label="問題一覧"><div class="drawer-head"><strong id="drawerTitle">問題一覧</strong><button id="closeDrawer" type="button" class="icon-btn">×</button></div><div id="questionList" class="question-list"></div></div></div>
+  <div id="toast" class="toast" hidden></div>
+</div>
 <script src="lesson-data.js"></script>
-<script src="data.js"></script>
-<script src="references.js"></script>
-<script src="app.js"></script>
-<script src="layout-fix.js"></script>
+<script src="lesson-data-v1.js"></script>
+<script src="lesson-references-v1.js"></script>
+<script src="lesson08-learning-v1.js"></script>
+<script src="https://branzfamily01.github.io/english-classroom/_engine/v1/audio.js"></script>
+<script src="https://branzfamily01.github.io/english-classroom/_engine/v1/engine.js"></script>
+<script src="https://branzfamily01.github.io/english-classroom/_teacher/v1/teacher.js"></script>
+<script src="lesson08-enhance-v1.js"></script>
 </body>
 </html>
