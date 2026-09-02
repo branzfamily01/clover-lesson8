@@ -1,17 +1,22 @@
 {
-  "lessonId": "clover.lesson8",
+  "schemaVersion": 1,
+  "id": "clover.lesson8",
   "title": "Clover Lesson 8",
-  "lesson": "LESSON 8",
+  "series": "Clover",
+  "lesson": "8",
+  "grade": 3,
+  "subject": "English",
+  "engine": "v1",
   "status": "review",
-  "version": "2026-09-02",
-  "itemCount": 37,
-  "engine": "lesson10-style-local-v1",
-  "authoritative": [
-    "Clover本冊 L08_本文",
-    "Clover公式解答 L08_解答"
-  ],
-  "supplementary": [
-    "高校英文法 Visual Grammar",
-    "一億人の英文法"
+  "questionCount": 37,
+  "formats": ["blank", "choice", "order", "translate", "write"],
+  "teacherMode": true,
+  "studentExport": true,
+  "features": [
+    "concept-map",
+    "question-diagrams",
+    "small-step-hints",
+    "backup-technique",
+    "final-check"
   ]
 }
