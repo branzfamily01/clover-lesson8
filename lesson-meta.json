@@ -17,6 +17,11 @@
     "question-diagrams",
     "small-step-hints",
     "backup-technique",
-    "final-check"
-  ]
+    "final-check",
+    "shared-engine-v1"
+  ],
+  "release": {
+    "studentProduction": false,
+    "requiresTeacherApproval": true
+  }
 }
