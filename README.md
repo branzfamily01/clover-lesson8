@@ -2,7 +2,7 @@
 
 Status: `review`.
 
-Clover Lesson 8 is now rebuilt on the same **English Classroom Engine v1** used by the Evergreen Gold Standard lessons.
+Clover Lesson 8 is rebuilt on the same **English Classroom Engine v1** used by the Evergreen Gold Standard lessons.
 
 ## Active entry points
 
@@ -31,8 +31,14 @@ Shared runtime is loaded from `branzfamily01/english-classroom`:
 
 Back Up Technique hides **one phrase at a time from the end**. Student entry does not load the Teacher layer.
 
+## Source policy
+
+Clover `L08_本文` / `L08_解答` remain authoritative for questions, choices, answers, completed sentences, and official translations. Evergreen Lesson8/9/10 are reference implementations for the classroom UX only.
+
 ## Legacy artifacts
 
 The previous standalone UI files (`app.js`, `layout-fix.js`, `styles.css`, `lesson08-enhance.js`, etc.) remain only as inactive review-history artifacts. The active teacher/student entry points do not load them.
 
-Student production release is not performed from this repository by this rebuild.
+## Release gate
+
+This rebuild remains `review`. Teacher approval is required before `ready`. Student production publication is a separate explicit step and has not been performed.
