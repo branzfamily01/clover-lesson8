@@ -1,6 +1,6 @@
 const fs=require('fs'),vm=require('vm');
 global.window=global;
-for(const f of ['lesson-data.js','lesson-data-v1.js','lesson08-learning-v1.js']) vm.runInThisContext(fs.readFileSync(f,'utf8'),{filename:f});
+for(const f of ['lesson-data.js','lesson08-output-v1.js','lesson-data-v1.js','lesson08-learning-v1.js']) vm.runInThisContext(fs.readFileSync(f,'utf8'),{filename:f});
 const D=window.LESSON_DATA; const err=[]; const allowed=new Set(['blank','choice','order','translate','write']);
 if(!Array.isArray(D)||D.length!==37) err.push(`item count: ${D&&D.length}`);
 (D||[]).forEach((x,n)=>{
@@ -18,7 +18,7 @@ if(!Array.isArray(D)||D.length!==37) err.push(`item count: ${D&&D.length}`);
 if(!window.LESSON_FINAL_CHECK||!Array.isArray(window.LESSON_FINAL_CHECK.sections)||window.LESSON_FINAL_CHECK.sections.length<5) err.push('Final Check sections');
 const teacher=fs.readFileSync('index.html','utf8'),student=fs.readFileSync('student-index.html','utf8');
 for(const html of [['index.html',teacher],['student-index.html',student]]){
-  for(const req of ['lesson-data.js','lesson-data-v1.js','lesson-references-v1.js','lesson08-learning-v1.js','lesson08-v1.css','_engine/v1/engine.js','_engine/v1/audio.js']) if(!html[1].includes(req)) err.push(`${html[0]} missing ${req}`);
+  for(const req of ['lesson-data.js','lesson08-output-v1.js','lesson-data-v1.js','lesson-references-v1.js','lesson08-learning-v1.js','lesson08-v1.css','_engine/v1/engine.js','_engine/v1/audio.js']) if(!html[1].includes(req)) err.push(`${html[0]} missing ${req}`);
   for(const legacy of ['app.js','layout-fix.js','styles.css']) if(html[1].includes(`src="${legacy}"`)||html[1].includes(`href="${legacy}"`)) err.push(`${html[0]} still loads legacy ${legacy}`);
 }
 if(!teacher.includes('_teacher/v1/teacher.js')) err.push('teacher entry missing shared teacher layer');
@@ -30,6 +30,6 @@ for(const req of ['lesson:render','where-am-i','question-viz','buildMap','clueTe
 const exp=JSON.parse(fs.readFileSync('student-export.json','utf8'));
 if(exp.policy!=='allowlist') err.push('student export must be allowlist');
 if(exp.status!=='review'||exp.releaseGate!=='teacher-approval-required') err.push('review release gate missing');
-for(const req of ['lesson-data.js','lesson-data-v1.js','lesson-references-v1.js','lesson08-learning-v1.js','lesson08-enhance-v1.js','lesson08-v1.css','student-index.html']) if(!exp.files.includes(req)) err.push(`student export missing ${req}`);
+for(const req of ['lesson-data.js','lesson08-output-v1.js','lesson-data-v1.js','lesson-references-v1.js','lesson08-learning-v1.js','lesson08-enhance-v1.js','lesson08-v1.css','student-index.html']) if(!exp.files.includes(req)) err.push(`student export missing ${req}`);
 if(err.length){console.error(err.join('\n'));process.exit(1)}
-console.log(`OK: ${D.length} items / Engine v1 / Small Step Hints / MAP / Back Up / Final Check / student-safe / review-gated`);
+console.log(`OK: ${D.length} items / Engine v1 / Small Step Hints / MAP / phrase Back Up / Final Check / student-safe / review-gated`);
