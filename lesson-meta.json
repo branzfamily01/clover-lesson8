@@ -7,7 +7,7 @@
   "grade": 3,
   "subject": "English",
   "engine": "v1",
-  "status": "review",
+  "status": "ready",
   "questionCount": 37,
   "formats": ["blank", "choice", "order", "translate", "write"],
   "teacherMode": true,
