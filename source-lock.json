@@ -1,4 +1,6 @@
 {
+  "lessonId": "clover.lesson8",
+  "status": "review",
   "authoritative": [
     {
       "name": "L08_本文",
@@ -16,7 +18,12 @@
     },
     {
       "name": "一億人の英文法",
-      "role": "コアイメージ・語順・助動詞/否定/比較等の補助"
+      "role": "コアイメージ・語順・文法・語法の補助"
+    },
+    {
+      "name": "Evergreen Lesson8 / 9 / 10",
+      "role": "授業UX・Small Step Hint・Concept MAP・Back Up Technique・Final CheckのGold Standard実装参照。Cloverの問題正本は上書きしない。"
     }
-  ]
+  ],
+  "policy": "Cloverの問題文・選択肢・正答・完成英文・公式訳はauthoritative sourceを優先する。Evergreenは授業UXの参照実装であり、Cloverの正本内容を変更しない。"
 }
