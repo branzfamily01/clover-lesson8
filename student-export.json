@@ -2,6 +2,7 @@
   "policy": "allowlist",
   "lessonId": "clover.lesson8",
   "status": "review",
+  "releaseGate": "teacher-approval-required",
   "files": [
     "lesson-data.js",
     "lesson-data-v1.js",
