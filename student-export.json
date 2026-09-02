@@ -1,20 +1,24 @@
 {
+  "policy": "allowlist",
   "lessonId": "clover.lesson8",
   "status": "review",
-  "include": [
-    "lesson-meta.json",
+  "files": [
     "lesson-data.js",
-    "data.js",
-    "references.js",
-    "app.js",
-    "layout-fix.js",
-    "styles.css",
+    "lesson-data-v1.js",
+    "lesson-references-v1.js",
+    "lesson08-learning-v1.js",
+    "lesson08-enhance-v1.js",
+    "lesson08-v1.css",
     "student-index.html"
   ],
   "exclude": [
     "source-lock.json",
+    "teacher.js",
     "Teacher Log",
-    "teacher memo",
-    "legacy teacher assets"
+    "teaching.v1",
+    "backup data",
+    "legacy app.js",
+    "legacy layout-fix.js",
+    "legacy styles.css"
   ]
 }
